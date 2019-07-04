@@ -65,18 +65,20 @@
             height: 100%;
         }
         .hl-ap-content {
-            padding: 0;
-            margin:0;
+            padding: 0!important;
+            margin:0!important;
+            box-sizing: content-box!important;
         }
         .hl-ap-main-content {
             position: absolute;
-            top: 52px;
-            padding: 15px 0 15px 15px;
-            margin:0;
+            top: 57px;
+            padding: 15px 0 0 13px!important;
+            margin:0!important;
             overflow: auto;
-            height: calc(100% - 100px);
-            width: calc(100% - 30px);
+            height: calc(100% - 108px);
+            width: calc(100% - 15px);
             font-size: 13px;
+            box-sizing: content-box!important;
         }
 
         .hl-ap-mobile-menu-btn {
@@ -242,7 +244,7 @@
                 color: whitesmoke;
             }
             .hl-ap-main-content{
-                width: calc(100% - 12px);
+                width: calc(100% - 15px);
                 font-size: 15px;
                 padding: 15px 5px;
             }
@@ -302,9 +304,9 @@
         </div>
     </div>
     <div class="hl-ap-over-content">
-        <div class="hl-ap-content">
+        <div class="hl-ap-content ">
             <div class="hl-ap-actual-name"><div class="hl-ap-actual-name-on"><?= $this->actual_name; ?></div></div>
-            <div class="hl-ap-main-content">
+            <div class="hl-ap-main-content no-gutters">
 
             <!-- ADMIN PANEL CONTENT -->
 
