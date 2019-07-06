@@ -4,35 +4,34 @@ namespace Phphleb\Adminpan;
 
 use Phphleb\Adminpan\Add\{GetDataHTML,GetDataTable,GetDataList, GetDataGraph};
 
-class MainAdminPanel extends \MainController
-{
-    /**
-     * @param string $html
-     * @return string
-     */
-    public function getDataHTML(string $html)
-    {
-        return (new GetDataHTML)->get($html);
-    }
+class MainAdminPanel
+        {
+            /**
+             * @param string $html
+             * @return string
+             */
+            public function getDataHTML(string $html)
+        {
+            return (new GetDataHTML)->get($html);
+        }
 
-    /**
-     * @param array $data
-     * @param array $head
-     * @return string
-     */
-    public function getDataTable(array $data)
-    {
-        return (new GetDataTable)->get($data, []);
-    }
+            /**
+             * @param array $data
+             * @return string
+             */
+            public function getDataTable(array $data)
+        {
+            return (new GetDataTable)->get($data, []);
+        }
 
-    /**
-     * @param array $data
-     * @param array $names
-     * @return string
-     */
-    public function getNamedTable(array $data, array $names)
-    {
-        return (new GetDataTable)->get($data, $names);
+            /**
+             * @param array $data
+             * @param array $names
+             * @return string
+             */
+            public function getNamedTable(array $data, array $names)
+        {
+            return (new GetDataTable)->get($data, $names);
     }
 
     /**
