@@ -52,9 +52,14 @@
         .hl-ap-menu-block-link a {
             color: whitesmoke;
             cursor: pointer;
+            text-decoration: underline;
         }
+
         .hl-ap-menu-block-link a:hover {
             color: white;
+        }
+        .hl-ap-menu-block{
+            color: #b4cfe2;
         }
         .hl-ap-over-content {
             position: absolute;
@@ -93,14 +98,30 @@
             overflow-y: hidden;
         }
         .hl-ap-mobile-menu-btn-close{
-            float:right;
-            padding: 2px 10px 5px 5px;
+            border-bottom: 1px solid #9e9e9e;
+            position: fixed;
+            right: 15px;
+            padding: 5px 10px;
             background-color: #4e759d;
             cursor: pointer;
             color: whitesmoke;
             font-size: 24px;
             font-weight: bold;
             display: none;
+            z-index: 1002;
+            border-radius: 100%;
+        }
+        .hl-ap-block_numeric{
+            margin: 5px 0 20px 5px;
+        }
+        .hl-ap-block_numeric span{
+            display: inline-block;
+            padding: 0 10px 0 10px;
+            margin-bottom: 15px;
+        }
+        .hl-ap-block_numeric button{
+            display: inline-block;
+            margin-bottom: 15px;
         }
         .-hl-ap-btn-link{
             border: 0;
@@ -226,8 +247,7 @@
                 width: 25%;
                 position: absolute;
                 z-index: 1001;
-                width: 100%;
-                max-width: 500px;
+                min-width: 100%;
                 box-shadow: 0px 0px 6px 0px #000000;
                 display: none;
             }
@@ -257,7 +277,6 @@
                 text-decoration: none;
             }
             .hl-ap-menu-block{
-                color: #3a3a3a;
                 text-shadow: none;
                 filter: none;
             }

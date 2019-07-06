@@ -2,7 +2,7 @@
 
 namespace Phphleb\Adminpan;
 
-use Phphleb\Adminpan\Add\{GetDataHTML,GetDataTable,GetDataList, GetDataGraph};
+use Phphleb\Adminpan\Add\{GetDataHTML,GetDataTable,GetDataList, GetDataGraph, GetDataNumericPageBtns};
 
 class MainAdminPanel
         {
@@ -54,6 +54,10 @@ class MainAdminPanel
         return (new GetDataGraph)->get($data_x, $data_y);
     }
 
+    public function getNumericPageBtns(array $params)
+    {
+        return (new GetDataNumericPageBtns)->get($params);
+    }
 
 }
 

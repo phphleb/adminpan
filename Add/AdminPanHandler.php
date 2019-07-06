@@ -109,7 +109,7 @@ class AdminPanHandler
                     }
                     $item .= "<div class='hl-ap-link-str' onclick='" . $this->get_js_handler($key) .  "'>" .
                     "<div class='hl-ap-block-bottom'></div><div class='hl-ap-menu-block-link -hl-ap-btn-title-link'>" .
-                        "<a href='#'>" . $block["name"][0] . "</a></div></div>" .
+                        "<a>" . $block["name"][0] . "</a></div></div>" .
                         "<div class='hl-ap-select-blocks' id='hl-ap-menu--" . md5($key) . "' style='display: " . $bl_search_display . "'>";
                     $item .= $bl_content;
                     $btn_all[] = $block["name"][0];
