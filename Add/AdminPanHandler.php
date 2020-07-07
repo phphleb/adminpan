@@ -11,6 +11,23 @@ class AdminPanHandler
     protected $all_data;
 
     protected $menu_cont;
+    
+    public function getLang() {
+        return AdminPanData::getLang();
+    }
+
+    public function getLogo() {
+        return AdminPanData::getLogo();
+    }
+
+    public function getColor() {
+        return AdminPanData::getColor();
+    }
+
+    public function getLink() {
+        $link = AdminPanData::getLink();
+        return !empty($link) ? ["url" => $link["url"], "name" => AdminPanData::i18n($link["name"])] : null;
+    }
 
     public function getHeader($num, $all_menu)
     {
@@ -48,12 +65,16 @@ class AdminPanHandler
                     $data = $action["adminPanController"];
                     $name = is_array($data[2]) ? $data[2] : [$data[2]];
 
+                    foreach($name as $index =>$value){
+                        $name[$index] = AdminPanData::i18n($value);
+                    }
+
                     // Актуальный блок
                     if ($block["number"] == $num) {
-                        $this->actual_name = implode(" : ", $name);
+                        $this->actual_name = implode(" : ",  $name);
                         $this->actual_id = $block["number"];
                     }
-                    $result[$block["number"]] = ["name" => $name, "url" => $url];
+                    $result[$block["number"]] = ["name" =>  $name, "url" => $url];
                 }
             }
 
@@ -126,10 +147,10 @@ class AdminPanHandler
         $item = "";
         if ($key == $this->actual_id) {
             $item .= "<div class='hl-ap-menu-block $class'>";
-            $item .= $name;
+            $item .= AdminPanData::i18n($name);
         } else {
             $item .= "<div class='hl-ap-menu-block-link $class'>";
-            $item .= "<a href='" . $url . "'>" . $name . "</a>";
+            $item .= "<a href='/" . $url . "'>" . AdminPanData::i18n($name) . "</a>";
         }
         $item .= "</div>";
         return $item;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<?php  $this->getLang(); ?>">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width"/>
@@ -11,18 +11,19 @@
             width: 100%;
             height: 100%;
             background-color: white;
-            font-family: "PT Sans", "Arial", serif;
+            font-family: 'PT Sans', sans-serif;
             font-size: 16px;
         }
         .hl-ap-over-menu {
             position: absolute;
             left: 0;
             top: 0;
-            background-color: #4e759d;
+            background-color: <?= $this->getColor(); ?>;
             width: 13%;
             height: 100%;
             padding:0;
             margin: 0;
+            display: block;
         }
         .hl-ap-menu {
             position: absolute;
@@ -52,14 +53,14 @@
         .hl-ap-menu-block-link a {
             color: whitesmoke;
             cursor: pointer;
-            text-decoration: underline;
+            text-decoration: none;
         }
 
         .hl-ap-menu-block-link a:hover {
             color: white;
         }
         .hl-ap-menu-block{
-            color: #b4cfe2;
+            color: #c8cdd5;
         }
         .hl-ap-over-content {
             position: absolute;
@@ -89,7 +90,7 @@
         .hl-ap-mobile-menu-btn {
             position: absolute;
             z-index: 1000;
-            background-color: #4e759d;
+            background-color: <?= $this->getColor(); ?>;
             border: 0;
             padding: 10px 5px 5px 10px;
             display: none;
@@ -98,18 +99,13 @@
             overflow-y: hidden;
         }
         .hl-ap-mobile-menu-btn-close{
-            border-bottom: 1px solid #9e9e9e;
             position: fixed;
-            right: 15px;
-            padding: 5px 10px;
-            background-color: #4e759d;
+            right: 7px;
+            padding: 5px 5px;
+            background-color: <?= $this->getColor(); ?>;
             cursor: pointer;
-            color: whitesmoke;
-            font-size: 24px;
-            font-weight: bold;
             display: none;
             z-index: 1002;
-            border-radius: 100%;
         }
         .hl-ap-block_numeric{
             margin: 5px 0 20px 5px;
@@ -220,6 +216,20 @@
         .hl-ap-graph-min{
             border-top: 4px solid #494eff;
         }
+        .hl-main-logo{
+            position: relative;
+            bottom: 6px;
+            max-width: 170px;
+            height: 70px;
+        }
+        .hl-main-logo-mob-background {
+            background-image: none;
+        }
+        .hl-main-link{
+            font-weight: bolder;
+            color: white;
+            text-decoration: none;
+        }
 
         /* Large Devices, Wide Screens */
 
@@ -259,7 +269,7 @@
                 display: block;
             }
             .hl-ap-actual-name{
-                background-color: #4e759d;
+                background-color: <?= $this->getColor(); ?>;
                 padding-left: 50px;
                 color: whitesmoke;
             }
@@ -269,12 +279,15 @@
                 padding: 15px 5px;
             }
             .hl-ap-menu-block, .hl-ap-menu-block-link{
-                margin-top: 14px;
-                padding-bottom: 12px;
-                border-bottom: 1px solid #6b8ca9;
+                margin-top: 18px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #a2a4a8;
+                width: calc(100% - 40px);
             }
             .hl-ap-menu-block-link a{
                 text-decoration: none;
+                display: inline-block;
+                width: 100%;
             }
             .hl-ap-menu-block{
                 text-shadow: none;
@@ -289,6 +302,22 @@
             .hl-ap-block_html{
                 padding: 0;
             }
+            .hl-main-logo {
+                display: none;
+            }
+            .hl-main-logo-mob-background {
+                <?php if(!empty($this->getLogo())){ ?>
+                background-image: url(<?= $this->getLogo();  ?>);
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-position: right;
+                <?php } ?>
+            }
+            .fil1 {fill:#FEFEFE}
+            .fil0 {fill:#2B2A29}
+            .str0-close {stroke:#B3B3B3;stroke-width:2.36;stroke-miterlimit:22.9256}
+            .fil0-close {fill:none}
+            .fil1-close {fill:#B3B3B3}
         }
 
         @media print {
@@ -305,26 +334,54 @@
     <button id="HlApMenuBtn" type="button" class="hl-ap-mobile-menu-btn hl-ap-noprint" onclick="document.getElementById('HlApOverMenu').style.display = 'block'">
         <svg class="svg-icon"
              width="30" height="30"
-             viewBox="0 0 10 10"
+             viewBox="0 0 30 30"
              role="img">
-            <g fill="whitesmoke">
-                <path d="m1 7h8v2h-8zm0-3h8v2h-8zm0-3h8v2h-8z"/>
+            <g>
+                <g>
+                    <polygon class="fil0" points="2.09,3.03 30,3.13 30,7.01 2.09,6.91 "/>
+                    <polygon class="fil0" points="2.08,25.02 29.99,25.12 29.99,29 2.08,28.9 "/>
+                    <polygon class="fil0" points="2.08,14.01 29.99,14.11 29.99,17.99 2.08,17.89 "/>
+                </g>
+                <g>
+                    <polygon class="fil1" points="1.06,2 28.97,2.1 28.97,5.98 1.06,5.88 "/>
+                    <polygon class="fil1" points="1.05,23.99 28.95,24.09 28.95,27.97 1.05,27.87 "/>
+                    <polygon class="fil1" points="1.05,12.98 28.95,13.08 28.95,16.96 1.05,16.86 "/>
+                </g>
             </g>
         </svg>
     </button>
+
     <div id="HlApOverMenu" class="hl-ap-over-menu hl-ap-noprint">
         <div class="hl-ap-menu">
-            <div class="hl-ap-mobile-menu-btn-close" onclick="document.getElementById('HlApOverMenu').style.display = 'none'">X</div>
+            <div class="hl-ap-mobile-menu-btn-close" onclick="document.getElementById('HlApOverMenu').style.display = 'none'">
+                <svg
+                     width="30" height="30"
+                     viewBox="0 0 30 30"
+                     role="img">
+                    <g>
+                        <line class="fil0-close str0-close" x1="4" y1="15" x2="10" y2= "8.5" />
+                        <line class="fil0-close str0-close" x1="10" y1="21.5" x2="4" y2= "15" />
+                        <polygon class="fil1-close" points="27.1,1 29,1 29,3 29,29 27.1,29 27.1,3 9,3 9,1 "/>
+                        <polygon class="fil1-close" points="4.97,14 21.97,14 21.97,16 4.97,16 "/>
+                        <polygon class="fil1-close" points="9,27 29,27 29,29 9,29 "/>
+                    </g>
+                </svg>
+            </div>
+            <?php if(!empty($this->getLogo())){ ?>
+            <div class="hl-main-logo"><img src="<?= $this->getLogo();  ?>" class="hl-main-logo"></div>
+            <?php }  ?>
+            <?php if(!empty($this->getLink())){ ?>
+                <div class="hl-ap-menu-block-link hl-ap-menu-block"><a href="<?= $this->getLink()['url'];  ?>" class="hl-main-link"><?= $this->getLink()['name'];  ?></a></div>
+            <?php }  ?>
             <!-- Menu -->
             <?= $this->menu_cont; ?>
-
             <!-- /Menu -->
 
         </div>
     </div>
     <div class="hl-ap-over-content">
-        <div class="hl-ap-content ">
-            <div class="hl-ap-actual-name"><div class="hl-ap-actual-name-on"><?= $this->actual_name; ?></div></div>
+        <div class="hl-ap-content">
+            <div class="hl-ap-actual-name hl-main-logo-mob-background"><div class="hl-ap-actual-name-on"><?= $this->actual_name; ?></div></div>
             <div class="hl-ap-main-content no-gutters">
 
             <!-- ADMIN PANEL CONTENT -->
