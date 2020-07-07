@@ -326,6 +326,7 @@
             }
         }
     </style>
+    <?php if(!empty($this->getDataFromHeader())){ implode("\n    ", $this->getDataFromHeader()); } ?>
     <title>Admin Panel | <?= $this->actual_name; ?></title>
 </head>
 <body>

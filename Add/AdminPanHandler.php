@@ -24,6 +24,10 @@ class AdminPanHandler
         return AdminPanData::getColor();
     }
 
+    public function getDataFromHeader() {
+        return AdminPanData::getDataFromHeader();
+    }
+
     public function getLink() {
         $link = AdminPanData::getLink();
         return !empty($link) ? ["url" => $link["url"], "name" => AdminPanData::i18n($link["name"])] : null;

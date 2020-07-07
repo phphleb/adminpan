@@ -23,6 +23,8 @@ class AdminPanData
 
     protected static $link = null;
 
+    protected static $header = [];
+
    public static function setI18nList(array $data) {
        self::$list = $data;
    }
@@ -71,6 +73,14 @@ class AdminPanData
             return self::$link;
         }
         return null;
+    }
+
+    public static function setDataFromHeader(string $str) {
+        self::$header[] = $str;
+    }
+
+    public static function getDataFromHeader() {
+      return self::$header;
     }
 }
 

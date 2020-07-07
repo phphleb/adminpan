@@ -26,41 +26,56 @@ use Phphleb\Adminpan\Add\AdminPanData;
 
 class AdminController extends \MainController
 {
-  function main()
-  {
-    /** Optional parameters */
+  function main() {
+     
+     /** Optional parameters */
 
-   // Primary color setting
-   AdminPanData::setColor("#434c61");
+     $this->setGlobalPanSettings();
 
-   // Setting the language, for example "en" or "ru"
-   AdminPanData::setLang("ru");
+     AdminPanData::setDataFromHeader('<meta name="description" content="Page description">');
 
-   // Setting the site logo
-   AdminPanData::setLogo("/svg/logo.svg");
-
-   // Setting a link to the site and its name
-   AdminPanData::setLink("/", "main_page");
-
-   // Defining a translation array
-   AdminPanData::setI18nList([
-         "en" => ["adminzone" => "Adminzone", "reg_panel" => "Users", "settings_panel" => "Settings", "main_page" => "Main Page"],
-         "ru" => ["adminzone" => "Админзона","reg_panel" => "Пользователи", "settings_panel" => "Параметры", "main_page" => "Главная страница"],
-       ]);
-
-   $panel = new MainAdminPanel();
-   // HTML output
-   $content = $panel->getDataHTML("<b>HTML</b>");
+     $panel = new MainAdminPanel();
+     // HTML output
+     $content = $panel->getDataHTML("<b>HTML</b>");
    
-   // Get a numbered list
-   $content .= $panel->getDataList(["Text 1", "Text 2", "Text 3"]);
+     // Get a numbered list
+     $content .= $panel->getDataList(["Text 1", "Text 2", "Text 3"]);
 
-   // Output an array with data in the form of a table
-   $data = UserModel::getData();
-   $content .= $panel->getDataTable($data);
-
-   return $content ;
+     // Output an array with data in the form of a table
+     $data = UserModel::getData();
+     $content .= $panel->getDataTable($data);
+     
+     // Content of the current page
+     return $content ;
   }
+   
+   protected function setGlobalPanSettings() {
+
+      /** Optional parameters */
+     
+      // Primary color setting
+      AdminPanData::setColor("#434c61");
+     
+       // Adding data to the page header
+       AdminPanData::setDataFromHeader('<meta name="author" content="admin">');
+       AdminPanData::setDataFromHeader('<script type="text/javascript" src="/js/main.js"></script>');
+     
+        // Setting the site logo
+        AdminPanData::setLogo("/svg/logo.svg");
+     
+        // Setting a link to the site and its name
+        AdminPanData::setLink("/", "main_page");
+        
+        // Setting the language, for example "en" or "ru"
+        AdminPanData::setLang("ru");
+     
+        // Defining a translation array
+        AdminPanData::setI18nList([
+            "en" => ["adminzone" => "Adminzone", "reg_panel" => "Users", "settings_panel" => "Settings", "main_page" => "Main Page"],
+            "ru" => ["adminzone" => "Админзона","reg_panel" => "Пользователи", "settings_panel" => "Параметры", "main_page" => "Главная страница"],
+          ]);
+   }
+
 }
 
 ```
