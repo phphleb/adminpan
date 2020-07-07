@@ -126,7 +126,7 @@
         }
         .-hl-ap-btn-title-link{
             display: inline-block;
-            margin-left: 3px;
+            margin-left: 6px;
             cursor: pointer;
         }
         .hl-ap-block-bottom {
@@ -143,7 +143,8 @@
         .hl-ap-select-blocks{
             position: relative;
             bottom: 6px;
-            background-color: #5789B9;
+            background: <?= $this->getColor(); ?>;
+            background: rgba(255, 255, 255, 0.1);
             padding: 5px 0 15px 10px;
             margin-bottom: 3px;
         }
@@ -282,7 +283,12 @@
                 margin-top: 18px;
                 padding-bottom: 16px;
                 border-bottom: 1px solid #a2a4a8;
-                width: calc(100% - 40px);
+                width: calc(100% - 45px);
+            }
+            .hl-ap-select-blocks{
+                position: relative;
+                right: 5px;
+                width: calc(100% - 50px);
             }
             .hl-ap-menu-block-link a{
                 text-decoration: none;
@@ -326,6 +332,20 @@
             }
         }
     </style>
+    <script>
+        function hl_revert_submenu_block_view(elem){
+            var id = elem.id;
+            var block = document.getElementById(id + "-block");
+            var marker = document.getElementById(id + "-marker");
+            if(block.style.display == "block"){
+                block.style.display = "none";
+                marker.innerHTML = "+";
+            } else {
+                block.style.display = "block";
+                marker.innerHTML = "- ";
+            }
+        }
+    </script>
     <?php if(!empty($this->getDataFromHeader())){ implode("\n    ", $this->getDataFromHeader()); } ?>
     <title>Admin Panel | <?= $this->actual_name; ?></title>
 </head>

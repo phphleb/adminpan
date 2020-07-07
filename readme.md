@@ -17,6 +17,13 @@ Route::get('/admin/panel/main/')->adminPanController('AdminController@main', 'ad
 ```
 
 ```php
+// Demo with one level of attachment
+Route::get('/admin/page/first/')->adminPanController('AdminController@page', ['Level 1' ,'Page 1'], [1]);
+Route::get('/admin/page/second/')->adminPanController('AdminController@page', ['Level 1' ,'Page 2'], [2]);
+
+```
+
+```php
 
 // Файл /app/Controllers/AdminController.php
 namespace App\Controllers;
@@ -26,29 +33,34 @@ use Phphleb\Adminpan\Add\AdminPanData;
 
 class AdminController extends \MainController
 {
-  function main() {
+   public function main() {
      
-     /** Optional parameters */
+       /** Optional parameters */
 
-     $this->setGlobalPanSettings();
+       $this->setGlobalPanSettings();
 
-     AdminPanData::setDataFromHeader('<meta name="description" content="Page description">');
+       AdminPanData::setDataFromHeader('<meta name="description" content="Page description">');
 
-     $panel = new MainAdminPanel();
-     // HTML output
-     $content = $panel->getDataHTML("<b>HTML</b>");
+       $panel = new MainAdminPanel();
+       // HTML output
+       $content = $panel->getDataHTML("<b>HTML</b>");
    
-     // Get a numbered list
-     $content .= $panel->getDataList(["Text 1", "Text 2", "Text 3"]);
+       // Get a numbered list
+       $content .= $panel->getDataList(["Text 1", "Text 2", "Text 3"]);
 
-     // Output an array with data in the form of a table
-     $data = UserModel::getData();
-     $content .= $panel->getDataTable($data);
+       // Output an array with data in the form of a table
+       $data = UserModel::getData();
+       $content .= $panel->getDataTable($data);
      
-     // Content of the current page
-     return $content ;
-  }
+       // Content of the current page
+       return $content ;
+   }
    
+   public function page($number) {
+
+       return "This page number is " . $number;
+   }
+ 
    protected function setGlobalPanSettings() {
 
        /** Optional parameters */

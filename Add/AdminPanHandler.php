@@ -67,6 +67,7 @@ class AdminPanHandler
             foreach ($block["actions"] as $action) {
                 if (isset($action["adminPanController"])) {
                     $data = $action["adminPanController"];
+                    
                     $name = is_array($data[2]) ? $data[2] : [$data[2]];
 
                     foreach($name as $index =>$value){
@@ -126,16 +127,20 @@ class AdminPanHandler
                 if (!in_array($block["name"][0], $btn_all)) {
                     $bl_content = "";
                     $bl_search_display = "none";
+                    $bl_search_marker = "+";
                     foreach ($menu_blocks as $k => $bl) {
                         if (count($bl["name"]) == 2 && !in_array($bl["name"][0], $btn_all) && $bl["name"][0] == $block["name"][0]) {
                             $bl_content .= $this->hl_create_single_block($k, $bl["name"][1], $bl["url"], "-hl-ap-btn-link");
-                            if ($k == $this->actual_id) $bl_search_display = "block";
+                            if ($k == $this->actual_id) {
+                                $bl_search_display = "block";
+                                $bl_search_marker = "- ";
+                            };
                         }
                     }
-                    $item .= "<div class='hl-ap-link-str' onclick='" . $this->get_js_handler($key) .  "'>" .
-                    "<div class='hl-ap-block-bottom'></div><div class='hl-ap-menu-block-link -hl-ap-btn-title-link'>" .
-                        "<a>" . $block["name"][0] . "</a></div></div>" .
-                        "<div class='hl-ap-select-blocks' id='hl-ap-menu--" . md5($key) . "' style='display: " . $bl_search_display . "'>";
+                    $item .= "<div class='hl-ap-link-str' id='hl-ap-menu--" . md5($key) . "' onclick='hl_revert_submenu_block_view(this)'>" .
+                    "<div class='hl-ap-menu-block-link -hl-ap-btn-title-link'><span id='hl-ap-menu--" . md5($key) . "-marker'>" . $bl_search_marker . "</span> " .
+                        "<a>" . $block["name"][0] . "</a> </div></div>" .
+                        "<div class='hl-ap-select-blocks' id='hl-ap-menu--" . md5($key) . "-block' style='display: " . $bl_search_display . "'>";
                     $item .= $bl_content;
                     $btn_all[] = $block["name"][0];
                     $item .= "</div>";
@@ -160,10 +165,5 @@ class AdminPanHandler
         return $item;
     }
 
-    function get_js_handler($key){
-
-        return "var hldoc = document.getElementById(\"hl-ap-menu--" . md5($key) . "\"); if(hldoc.style.display == \"none\"){hldoc.style.display = \"block\"}  else {hldoc.style.display = \"none\"};";
-
-    }
 }
 
