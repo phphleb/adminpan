@@ -51,14 +51,14 @@ class AdminController extends \MainController
    
    protected function setGlobalPanSettings() {
 
-      /** Optional parameters */
+       /** Optional parameters */
      
-      // Primary color setting
-      AdminPanData::setColor("#434c61");
+        // Primary color setting
+        AdminPanData::setColor("#434c61");
      
-       // Adding data to the page header
-       AdminPanData::setDataFromHeader('<meta name="author" content="admin">');
-       AdminPanData::setDataFromHeader('<script type="text/javascript" src="/js/main.js"></script>');
+        // Adding data to the page header
+        AdminPanData::setDataFromHeader('<meta name="author" content="admin">');
+        AdminPanData::setDataFromHeader('<script type="text/javascript" src="/js/main.js"></script>');
      
         // Setting the site logo
         AdminPanData::setLogo("/svg/logo.svg");
