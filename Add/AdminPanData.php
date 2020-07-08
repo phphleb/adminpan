@@ -6,16 +6,9 @@ class AdminPanData
 {
     use \DeterminantStaticUncreated;
 
-    /*
-     * [
-    "ru" => ["ru_name" => "value", ...],
-    "en" => ["en_name" => "value", ...],
-    "de" => ["de_name" => "value", ...],
-    ]
-    */
     protected static $list = [];
 
-    protected static $lang = "en";
+    protected static $lang = null;
 
     protected static $logo = "";
 
@@ -34,11 +27,13 @@ class AdminPanData
     }
 
     public static function setLang(string $type) {
-        self::$lang = $type;
+        if(empty(self::$lang)){
+            self::$lang = $type;
+        }
     }
 
     public static function getLang() {
-        return self::$lang;
+        return self::$lang ?? "en";
     }
 
     public static function i18n($name) {

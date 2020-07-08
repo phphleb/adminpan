@@ -2,6 +2,8 @@
 
 namespace Phphleb\Adminpan\Add;
 
+use Hleb\Constructor\Handlers\Request;
+
 class AdminPanHandler
 {
     protected $actual_name;
@@ -158,8 +160,16 @@ class AdminPanHandler
             $item .= "<div class='hl-ap-menu-block $class'>";
             $item .= AdminPanData::i18n($name);
         } else {
+            $parts = explode("/", $url);
+            foreach ($parts as &$part) {
+                $value = trim($part, "{?}");
+                if ($part !== $value) {
+                    $part = Request::get($value);
+                }
+            }
+            $url = implode("/", $parts);
             $item .= "<div class='hl-ap-menu-block-link $class'>";
-            $item .= "<a href='/" . $url . "'>" . AdminPanData::i18n($name) . "</a>";
+            $item .= "<a href='/" . $url . "/'>" . AdminPanData::i18n($name) . "</a>";
         }
         $item .= "</div>";
         return $item;

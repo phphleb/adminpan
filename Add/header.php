@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php  $this->getLang(); ?>">
+<html lang="<?=  $this->getLang(); ?>">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width"/>
