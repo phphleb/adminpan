@@ -283,7 +283,7 @@
                 margin-top: 18px;
                 padding-bottom: 16px;
                 border-bottom: 1px solid #a2a4a8;
-                width: calc(100% - 45px);
+                width: calc(100% - 38px);
             }
             .hl-ap-select-blocks{
                 position: relative;
@@ -333,6 +333,20 @@
         }
     </style>
     <script>
+        window.addEventListener('resize', hl_menu_size_tracking);
+        var hl_status_last_open_menu = false;
+        function hl_menu_size_tracking() {
+            var sizeW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            if(sizeW > 992){
+                document.getElementById('HlApOverMenu').style.display = 'block';
+            } else {
+                document.getElementById('HlApOverMenu').style.display = hl_status_last_open_menu ? 'block' : 'none';
+            }
+        }
+        function hl_revert_menu_block(type) {
+            document.getElementById('HlApOverMenu').style.display = type ? 'block' : 'none';
+            hl_status_last_open_menu = type;
+        }
         function hl_revert_submenu_block_view(elem){
             var id = elem.id;
             var block = document.getElementById(id + "-block");
@@ -344,19 +358,6 @@
                 block.style.display = "block";
                 marker.innerHTML = "- ";
             }
-        }
-        var hl_status_last_open_menu = false;
-        setInterval(function(){
-            var sizeW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            if(sizeW > 992){
-                document.getElementById('HlApOverMenu').style.display = 'block';
-            } else {
-                document.getElementById('HlApOverMenu').style.display = hl_status_last_open_menu ? 'block' : 'none';
-            }
-        }, 200);
-        function hl_revert_menu_block(type) {
-            document.getElementById('HlApOverMenu').style.display = type ? 'block' : 'none';
-            hl_status_last_open_menu = type;
         }
     </script>
     <?php if(!empty($this->getDataFromHeader())){ implode("\n    ", $this->getDataFromHeader()); } ?>
@@ -389,9 +390,9 @@
         <div class="hl-ap-menu">
             <div class="hl-ap-mobile-menu-btn-close" onclick="hl_revert_menu_block(false)">
                 <svg
-                    width="30" height="30"
-                    viewBox="0 0 30 30"
-                    role="img">
+                        width="30" height="30"
+                        viewBox="0 0 30 30"
+                        role="img">
                     <g>
                         <line class="fil0-close str0-close" x1="4" y1="15" x2="10" y2= "8.5" />
                         <line class="fil0-close str0-close" x1="10" y1="21.5" x2="4" y2= "15" />
