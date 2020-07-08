@@ -312,12 +312,12 @@
                 display: none;
             }
             .hl-main-logo-mob-background {
-                <?php if(!empty($this->getLogo())){ ?>
+            <?php if(!empty($this->getLogo())){ ?>
                 background-image: url(<?= $this->getLogo();  ?>);
                 background-repeat: no-repeat;
                 background-size: auto;
                 background-position: right;
-                <?php } ?>
+            <?php } ?>
             }
             .fil1 {fill:#FEFEFE}
             .fil0 {fill:#2B2A29}
@@ -345,6 +345,19 @@
                 marker.innerHTML = "- ";
             }
         }
+        var hl_status_last_open_menu = false;
+        setInterval(function(){
+            var sizeW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            if(sizeW > 992){
+                document.getElementById('HlApOverMenu').style.display = 'block';
+            } else {
+                document.getElementById('HlApOverMenu').style.display = hl_status_last_open_menu ? 'block' : 'none';
+            }
+        }, 200);
+        function hl_revert_menu_block(type) {
+            document.getElementById('HlApOverMenu').style.display = type ? 'block' : 'none';
+            hl_status_last_open_menu = type;
+        }
     </script>
     <?php if(!empty($this->getDataFromHeader())){ implode("\n    ", $this->getDataFromHeader()); } ?>
     <title>Admin Panel | <?= $this->actual_name; ?></title>
@@ -352,7 +365,7 @@
 <body>
 <div align="left" class="hl-ap-over-all">
 
-    <button id="HlApMenuBtn" type="button" class="hl-ap-mobile-menu-btn hl-ap-noprint" onclick="document.getElementById('HlApOverMenu').style.display = 'block'">
+    <button id="HlApMenuBtn" type="button" class="hl-ap-mobile-menu-btn hl-ap-noprint" onclick="hl_revert_menu_block(true)">
         <svg class="svg-icon"
              width="30" height="30"
              viewBox="0 0 30 30"
@@ -374,11 +387,11 @@
 
     <div id="HlApOverMenu" class="hl-ap-over-menu hl-ap-noprint">
         <div class="hl-ap-menu">
-            <div class="hl-ap-mobile-menu-btn-close" onclick="document.getElementById('HlApOverMenu').style.display = 'none'">
+            <div class="hl-ap-mobile-menu-btn-close" onclick="hl_revert_menu_block(false)">
                 <svg
-                     width="30" height="30"
-                     viewBox="0 0 30 30"
-                     role="img">
+                    width="30" height="30"
+                    viewBox="0 0 30 30"
+                    role="img">
                     <g>
                         <line class="fil0-close str0-close" x1="4" y1="15" x2="10" y2= "8.5" />
                         <line class="fil0-close str0-close" x1="10" y1="21.5" x2="4" y2= "15" />
@@ -389,7 +402,7 @@
                 </svg>
             </div>
             <?php if(!empty($this->getLogo())){ ?>
-            <div class="hl-main-logo"><img src="<?= $this->getLogo();  ?>" class="hl-main-logo"></div>
+                <div class="hl-main-logo"><img src="<?= $this->getLogo();  ?>" class="hl-main-logo"></div>
             <?php }  ?>
             <?php if(!empty($this->getLink())){ ?>
                 <div class="hl-ap-menu-block-link hl-ap-menu-block"><a href="<?= $this->getLink()['url'];  ?>" class="hl-main-link"><?= $this->getLink()['name'];  ?></a></div>
@@ -405,5 +418,5 @@
             <div class="hl-ap-actual-name hl-main-logo-mob-background"><div class="hl-ap-actual-name-on"><?= $this->actual_name; ?></div></div>
             <div class="hl-ap-main-content no-gutters">
 
-            <!-- ADMIN PANEL CONTENT -->
+                <!-- ADMIN PANEL CONTENT -->
 
