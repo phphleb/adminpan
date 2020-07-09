@@ -18,8 +18,10 @@ Route::get('/admin/panel/main/')->adminPanController('AdminController@main', 'ad
 
 ```php
 // Demo with one level of attachment
-Route::get('/admin/page/first/')->adminPanController('AdminController@page', ['Level 1' ,'Page 1'], [1]);
-Route::get('/admin/page/second/')->adminPanController('AdminController@page', ['Level 1' ,'Page 2'], [2]);
+Route::getGroup();
+Route::get('/{lang}/admin/page/first/')->adminPanController('AdminController@page', ['Level 1' ,'Page 1'], [1]);
+Route::get('/{lang}/admin/page/second/')->adminPanController('AdminController@page', ['Level 1' ,'Page 2'], [2]);
+Route::endGroup()->where(['lang' => 'en|de|ru']);
 
 ```
 
@@ -30,6 +32,7 @@ namespace App\Controllers;
 
 use Phphleb\Adminpan\MainAdminPanel;
 use Phphleb\Adminpan\Add\AdminPanData;
+use Hleb\Constructor\Handlers\Request;
 
 class AdminController extends \MainController
 {
@@ -57,6 +60,8 @@ class AdminController extends \MainController
    }
    
    public function page($number) {
+       // Instructions for the page
+       AdminPanData::setInstruction("The text of the instruction.");
 
        return "This page number is " . $number;
    }
@@ -79,13 +84,13 @@ class AdminController extends \MainController
         AdminPanData::setLink("/", "main_page");
         
         // Setting the language, for example "en" or "ru"
-        AdminPanData::setLang("ru");
+        AdminPanData::setLang(Request::get("lang") ?? 'ru');
      
         // Defining a translation array
         AdminPanData::setI18nList([
             "en" => ["adminzone" => "Adminzone", "reg_panel" => "Users", "settings_panel" => "Settings", "main_page" => "Main Page"],
             "ru" => ["adminzone" => "Админзона","reg_panel" => "Пользователи", "settings_panel" => "Параметры", "main_page" => "Главная страница"],
-          ]);
+          ]); 
    }
 
 }

@@ -89,6 +89,15 @@ class AdminPanHandler
         $this->all_data = $result;
     }
 
+    public function getInstruction() {
+        $str = implode("<br>" . "\n", AdminPanData::getInstruction());
+        $id = 'hl-instructions-for-the-page';
+        if(!empty($str)){
+            return "<div id='$id' class='hl-ap-noprint hl-user-select-none'>" . $str . "<div class='$id-close' onclick='document.getElementById(\"$id\").style.display = \"none\"'>X</div></div>";
+        }
+        return null;
+    }
+
     private function compound_url($strokes)
     {
         foreach ($strokes as &$stroke) {
@@ -121,8 +130,9 @@ class AdminPanHandler
             if (count($menu_block["name"]) > 1 && !in_array($menu_block["name"][0], $buttons)) $buttons[] = $menu_block["name"][0];
         }
 
+        $num = 1000;
         foreach ($menu_blocks as $key => $block) {
-
+            $num++;
             if (count($block["name"]) == 1 && !in_array($block["name"][0], $buttons)) {
                 $item .= $this->hl_create_single_block($key, $block["name"][0], $block["url"]);
             } else {
@@ -139,10 +149,10 @@ class AdminPanHandler
                             };
                         }
                     }
-                    $item .= "<div class='hl-ap-link-str' id='hl-ap-menu--" . md5($key) . "' onclick='hl_revert_submenu_block_view(this)'>" .
-                    "<div class='hl-ap-menu-block-link -hl-ap-btn-title-link'><span id='hl-ap-menu--" . md5($key) . "-marker'>" . $bl_search_marker . "</span> " .
+                    $item .= "<div class='hl-ap-link-str' id='hl-ap-menu--" . $num  . "' onclick='hl_revert_submenu_block_view(this)'>" .
+                    "<div class='hl-ap-menu-block-link -hl-ap-btn-title-link'><span id='hl-ap-menu--" . $num . "-marker'>" . $bl_search_marker . "</span> " .
                         "<a>" . $block["name"][0] . "</a> </div></div>" .
-                        "<div class='hl-ap-select-blocks' id='hl-ap-menu--" . md5($key) . "-block' style='display: " . $bl_search_display . "'>";
+                        "<div class='hl-ap-select-blocks' id='hl-ap-menu--" . $num  . "-block' style='display: " . $bl_search_display . "'>";
                     $item .= $bl_content;
                     $btn_all[] = $block["name"][0];
                     $item .= "</div>";
