@@ -13,7 +13,7 @@ class AdminPanHandler
     protected $all_data;
 
     protected $menu_cont;
-    
+
     public function getLang() {
         return AdminPanData::getLang();
     }
@@ -35,8 +35,7 @@ class AdminPanHandler
         return !empty($link) ? ["url" => $link["url"], "name" => AdminPanData::i18n($link["name"])] : null;
     }
 
-    public function getHeader($num, $all_menu)
-    {
+    public function getHeader($num, $all_menu) {
         $this->setAсtualData($num, $all_menu);
 
         $this->create_menu();
@@ -44,13 +43,11 @@ class AdminPanHandler
         return $this->create_panel();
     }
 
-    public function getFooter()
-    {
+    public function getFooter() {
         return file_get_contents(__DIR__ . "/footer.htm");
     }
 
-    private function setAсtualData($num, $all_blocks)
-    {
+    private function setAсtualData($num, $all_blocks) {
         $result = [];
 
         foreach ($all_blocks as $key => $block) {
@@ -69,19 +66,19 @@ class AdminPanHandler
             foreach ($block["actions"] as $action) {
                 if (isset($action["adminPanController"])) {
                     $data = $action["adminPanController"];
-                    
+
                     $name = is_array($data[2]) ? $data[2] : [$data[2]];
 
-                    foreach($name as $index =>$value){
+                    foreach ($name as $index => $value) {
                         $name[$index] = AdminPanData::i18n($value);
                     }
 
                     // Актуальный блок
                     if ($block["number"] == $num) {
-                        $this->actual_name = implode(" : ",  $name);
+                        $this->actual_name = implode(" : ", $name);
                         $this->actual_id = $block["number"];
                     }
-                    $result[$block["number"]] = ["name" =>  $name, "url" => $url];
+                    $result[$block["number"]] = ["name" => $name, "url" => $url];
                 }
             }
 
@@ -92,14 +89,13 @@ class AdminPanHandler
     public function getInstruction() {
         $str = implode("<br>" . "\n", AdminPanData::getInstruction());
         $id = 'hl-instructions-for-the-page';
-        if(!empty($str)){
+        if (!empty($str)) {
             return "<div id='$id' class='hl-ap-noprint hl-user-select-none'>" . $str . "<div class='$id-close' onclick='document.getElementById(\"$id\").style.display = \"none\"'>X</div></div>";
         }
         return null;
     }
 
-    private function compound_url($strokes)
-    {
+    private function compound_url($strokes) {
         foreach ($strokes as &$stroke) {
             $stroke = str_replace("//", "/", trim($stroke, "/ \\"));
         }
@@ -107,8 +103,7 @@ class AdminPanHandler
 
     }
 
-    private function create_panel()
-    {
+    private function create_panel() {
         ob_start();
         include __DIR__ . "/header.php";
         $out_data = ob_get_contents();
@@ -116,13 +111,11 @@ class AdminPanHandler
         return $out_data;
     }
 
-    private function create_menu()
-    {
+    private function create_menu() {
         $this->menu_cont = $this->get_menu_structure($this->all_data);
     }
 
-    private function get_menu_structure($menu_blocks)
-    {
+    private function get_menu_structure($menu_blocks) {
         $item = "";
         $buttons = [];
         $btn_all = [];
@@ -149,10 +142,10 @@ class AdminPanHandler
                             };
                         }
                     }
-                    $item .= "<div class='hl-ap-link-str' id='hl-ap-menu--" . $num  . "' onclick='hl_revert_submenu_block_view(this)'>" .
-                    "<div class='hl-ap-menu-block-link -hl-ap-btn-title-link'><span id='hl-ap-menu--" . $num . "-marker'>" . $bl_search_marker . "</span> " .
+                    $item .= "<div class='hl-ap-link-str' id='hl-ap-menu--" . $num . "' onclick='hl_revert_submenu_block_view(this)'>" .
+                        "<div class='hl-ap-menu-block-link -hl-ap-btn-title-link'><span id='hl-ap-menu--" . $num . "-marker'>" . $bl_search_marker . "</span> " .
                         "<a>" . $block["name"][0] . "</a> </div></div>" .
-                        "<div class='hl-ap-select-blocks' id='hl-ap-menu--" . $num  . "-block' style='display: " . $bl_search_display . "'>";
+                        "<div class='hl-ap-select-blocks' id='hl-ap-menu--" . $num . "-block' style='display: " . $bl_search_display . "'>";
                     $item .= $bl_content;
                     $btn_all[] = $block["name"][0];
                     $item .= "</div>";
@@ -163,8 +156,7 @@ class AdminPanHandler
         return $item;
     }
 
-    function hl_create_single_block($key, $name, $url, $class = "")
-    {
+    function hl_create_single_block($key, $name, $url, $class = "") {
         $item = "";
         if ($key == $this->actual_id) {
             $item .= "<div class='hl-ap-menu-block $class'>";

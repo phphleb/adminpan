@@ -20,16 +20,16 @@ class AdminPanData
 
     protected static $instruction = [];
 
-   public static function setI18nList(array $data) {
-       self::$list = $data;
-   }
+    public static function setI18nList(array $data) {
+        self::$list = $data;
+    }
 
     public static function getI18nList() {
         return self::$list;
     }
 
     public static function setLang(string $type) {
-        if(empty(self::$lang)){
+        if (empty(self::$lang)) {
             self::$lang = $type;
         }
     }
@@ -39,7 +39,7 @@ class AdminPanData
     }
 
     public static function i18n($name) {
-        if(empty(self::$list[self::$lang][$name])) {
+        if (empty(self::$list[self::$lang][$name])) {
             return $name;
         }
         return self::$list[self::$lang][$name];
@@ -77,7 +77,7 @@ class AdminPanData
     }
 
     public static function getDataFromHeader() {
-      return self::$header;
+        return self::$header;
     }
 
     public static function setInstruction(string $str) {
