@@ -171,7 +171,7 @@ class AdminPanHandler
             }
             $url = implode("/", $parts);
             $item .= "<div class='hl-ap-menu-block-link $class'>";
-            $item .= "<a href='/" . rtrim($url, '/') . "/'>" . AdminPanData::i18n($name) . "</a>";
+            $item .= "<a href='/" . trim($url, '/') . "/'>" . AdminPanData::i18n($name) . "</a>";
         }
         $item .= "</div>";
         return $item;
