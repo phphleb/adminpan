@@ -85,6 +85,9 @@ class AdminController extends \MainController
         
         // Setting the language, for example "en" or "ru"
         AdminPanData::setLang(Request::get("lang") ?? 'ru');
+        
+        // Replacing the default url value
+        AdminPanData::setUrlParts(["lang" => "ru"]);
      
         // Defining a translation array
         AdminPanData::setI18nList([

@@ -166,7 +166,7 @@ class AdminPanHandler
             foreach ($parts as &$part) {
                 $value = trim($part, "{?}");
                 if ($part !== $value) {
-                    $part = Request::get($value);
+                    $part = \Hleb\Constructor\Handlers\Request::get($value) ?? AdminPanData::getUrlParts($value) ?? null;
                 }
             }
             $url = implode("/", $parts);

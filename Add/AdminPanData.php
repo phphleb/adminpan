@@ -18,6 +18,8 @@ class AdminPanData
 
     protected static $header = [];
 
+    protected static $urlParts = [];
+
     protected static $instruction = [];
 
     public static function setI18nList(array $data) {
@@ -86,6 +88,14 @@ class AdminPanData
 
     public static function getInstruction() {
         return self::$instruction;
+    }
+
+    public static function setUrlParts(array $parts) {
+        self::$urlParts = $parts;
+    }
+
+    public static function getUrlParts($value) {
+        return self::$urlParts[$value] ?? null;
     }
 }
 
