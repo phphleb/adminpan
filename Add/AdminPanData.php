@@ -2,10 +2,8 @@
 
 namespace Phphleb\Adminpan\Add;
 
-class AdminPanData
+class AdminPanData extends Hleb\Main\Insert\BaseSingleton
 {
-    use \DeterminantStaticUncreated;
-
     protected static $list = [];
 
     protected static $lang = null;

@@ -20,6 +20,6 @@
     },
     "require": {
         "php": "^7.0.0 || ^8.0.0",
-        "phphleb/framework": "^1.1.5"
+        "phphleb/framework": "^1.5.52"
     }
 }
