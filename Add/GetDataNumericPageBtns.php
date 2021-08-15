@@ -29,6 +29,9 @@ class GetDataNumericPageBtns
 
     private function getButtons($page, $limit, $originUrl, $count, $pageName)
     {
+        $page = $page == 0 ? 1 : $page;
+        $limit = $limit == 0 ? 1 : $limit;
+
         $url = $originUrl . "?limit=$limit&page=";
         $endPage = ceil($count / $limit);
         if ($endPage < 2) {
