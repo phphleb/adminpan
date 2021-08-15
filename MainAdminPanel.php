@@ -55,11 +55,12 @@ class MainAdminPanel
      * @param int $limit
      * @param string $originUrl
      * @param int $count
+     * @param array $urlParams
      * @param string $translatePage
      * @return string
      */
-    public function getNumericPageBtns(int $page, int $limit, string $originUrl, int $count, string $translatePage = 'Page') {
-        return (new GetDataNumericPageBtns)->get($page, $limit, $originUrl, $count, $translatePage);
+    public function getNumericPageBtns(int $page, int $limit, string $originUrl, int $count, array $urlParams = [], string $translatePage = 'Page') {
+        return (new GetDataNumericPageBtns)->get($page, $limit, $originUrl, $count, $urlParams, $translatePage);
     }
 }
 
