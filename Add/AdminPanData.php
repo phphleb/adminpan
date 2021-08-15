@@ -2,7 +2,9 @@
 
 namespace Phphleb\Adminpan\Add;
 
-class AdminPanData extends Hleb\Main\Insert\BaseSingleton
+use Hleb\Main\Insert\BaseSingleton;
+
+class AdminPanData extends BaseSingleton
 {
     protected static $list = [];
 
