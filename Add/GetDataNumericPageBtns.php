@@ -20,7 +20,7 @@ class GetDataNumericPageBtns
                 $data .= "<span> " . $param[0] . " </span>";
                 $revert = true;
             } else {
-                $data .= "<a href='" . $param[1] . "'><button>" . ($i == 1 ? '|' : '') . ($revert ? '' : '<') . $param[0] . ($revert ? '>' : '') . ($i == count($params) ? '|' : '') . "</button></a>";
+                $data .= "<a href='" . $param[1] . "'><button>" . ($revert ? '>' : '') . ($i == count($params) ? '|' : '') . ' ' . $param[0] . ' '. ($i == 1 ? '|' : '') . ($revert ? '' : '<') . "</button></a>";
             }
             $i++;
         }
