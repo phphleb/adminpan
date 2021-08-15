@@ -32,7 +32,7 @@ class GetDataNumericPageBtns
         $url = $originUrl . "?limit=$limit&page=";
         $endPage = ceil($count / $limit);
         if ($endPage < 2) {
-            return '';
+            return [];
         }
         $pagePreview = ($page - 1) == 0 ? 1 : ($page - 1);
         $pageNext = $page + 1;
