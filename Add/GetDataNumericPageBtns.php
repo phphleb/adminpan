@@ -89,7 +89,7 @@ class GetDataNumericPageBtns
     {
         $result = [];
         for ($i = 1; $i < $count + 1; $i++) {
-            $result[] = $i === $page ? [$pageName . $page, $url . $page, true] : [$i , $url . $i];
+            $result[] = $i === $page ? [$pageName . ' ' . $page, $url . $page, true] : [$i , $url . $i];
         }
         return $result;
     }
