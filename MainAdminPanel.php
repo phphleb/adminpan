@@ -7,6 +7,8 @@ use Phphleb\Adminpan\Add\{GetDataHTML, GetDataTable, GetDataList, GetDataGraph, 
 class MainAdminPanel
 {
     /**
+     * Returns HTML
+     * Возвращает HTML
      * @param string $html
      * @return string
      */
@@ -15,6 +17,8 @@ class MainAdminPanel
     }
 
     /**
+     * Returns a responsive table.
+     * Возвращает адаптивную таблицу.
      * @param array $data
      * @return string
      */
@@ -23,6 +27,8 @@ class MainAdminPanel
     }
 
     /**
+     * Returns a responsive named table.
+     * Возвращает адаптивную именованную таблицу.
      * @param array $data
      * @param array $names
      * @return string
@@ -32,26 +38,39 @@ class MainAdminPanel
     }
 
     /**
+     * Returns a list.
+     * Возвращает список.
      * @param array $list
-     * @param int $start_num
+     * @param int $startNum
      * @return string
      */
-    public function getDataList(array $list, int $start_num = 1) {
-        return (new GetDataList)->get($list, $start_num);
+    public function getDataList(array $list, int $startNum = 1) {
+        return (new GetDataList)->get($list, $startNum);
     }
 
     /**
-     * @param array $data_x
-     * @param array $data_y
+     * Returns a graph with data along the axes.
+     * Возвращает график с данными по осям.
+     * @param array[int] $dataX
+     * @param array[int] $dataY
      * @return string
      */
-    public function getDataGraph(array $data_x, array $data_y) {
-        return (new GetDataGraph)->get($data_x, $data_y);
+    public function getDataGraph(array $dataX, array $dataY) {
+        return (new GetDataGraph)->get($dataX, $dataY);
     }
 
-    public function getNumericPageBtns(array $params) {
-        return (new GetDataNumericPageBtns)->get($params);
-    }
 
+    /**
+     * Returns pagination data.
+     * Возвращает данные пагинации.
+     * @param int $pageNumber
+     * @param int $limit
+     * @param string $originUrl
+     * @param int $allRowsCount
+     * @return string
+     */
+    public function getNumericPageBtns(int $pageNumber, int $limit, string $originUrl, int $allRowsCount) {
+        return (new GetDataNumericPageBtns)->get($pageNumber, $limit, $originUrl, $allRowsCount);
+    }
 }
 
