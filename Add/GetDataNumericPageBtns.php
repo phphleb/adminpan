@@ -52,6 +52,29 @@ class GetDataNumericPageBtns
                 [$pageName . ' ' . $page, $url . $page, true]
             ];
         }
+        if ($page == $endPage - 1) {
+            return [
+                [1, $url . 1],
+                [$pagePreview, $url . $pagePreview],
+                [$pageName . ' ' . $page, $url . $page, true],
+                [$endPage, $url . $endPage]
+            ];
+        }
+        if ($page == 1) {
+            return [
+                [$pageName . ' ' . $page, $url . $page, true],
+                [$pageNext, $url . $pageNext],
+                [$endPage, $url . $endPage]
+            ];
+        }
+        if ($page == 2) {
+            return [
+                [1, $url . 1],
+                [$pageName . ' ' . $page, $url . $page, true],
+                [$pageNext, $url . $pageNext],
+                [$endPage, $url . $endPage]
+            ];
+        }
         return [
             [1, $url . 1],
             [$pagePreview, $url . $pagePreview],
