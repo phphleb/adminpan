@@ -61,7 +61,7 @@ class AdminPanHandler
                     $url = $this->compound_url([$url, $action["prefix"]]);
                 }
             }
-            $url = hleb_a1a3b6di245ea_getStandardUrl($this->compound_url([$url, $block["data_path"] ?? ""]));
+            $url = function_exists('hleb_a1a3b6di245ea_getStandardUrl') ? hleb_a1a3b6di245ea_getStandardUrl($this->compound_url([$url, $block["data_path"] ?? ""])) : hleb_get_standard_url($this->compound_url([$url, $block["data_path"] ?? ""]));
 
             foreach ($block["actions"] as $action) {
                 if (isset($action["adminPanController"])) {
