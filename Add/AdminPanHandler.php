@@ -2,8 +2,6 @@
 
 namespace Phphleb\Adminpan\Add;
 
-use Hleb\Constructor\Handlers\Request;
-
 class AdminPanHandler
 {
     protected $actual_name;
@@ -36,7 +34,7 @@ class AdminPanHandler
     }
 
     public function getHeader($num, $all_menu) {
-        $this->setAсtualData($num, $all_menu);
+        $this->setActualData($num, $all_menu);
 
         $this->create_menu();
 
@@ -47,7 +45,7 @@ class AdminPanHandler
         return file_get_contents(__DIR__ . "/footer.htm");
     }
 
-    private function setAсtualData($num, $all_blocks) {
+    private function setActualData($num, $all_blocks) {
         $result = [];
 
         foreach ($all_blocks as $key => $block) {
