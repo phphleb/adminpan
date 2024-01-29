@@ -1,10 +1,10 @@
 {
     "name": "phphleb/adminpan",
-    "description": "Simple and adaptive Admin Panel from Micro-Framework HLEB",
+    "description": "Simple and adaptive Admin Panel from PHP Framework HLEB2",
     "type": "library",
     "keywords": [
         "adminpanel",
-        "hleb"
+        "hleb2"
     ],
     "license": "MIT",
     "authors": [
@@ -19,7 +19,7 @@
         }
     },
     "require": {
-        "php": ">=7.0.0",
-        "phphleb/framework": ">=1.5.52"
+        "php": ">=8.2.0",
+        "phphleb/framework": ">=2.0.0"
     }
 }

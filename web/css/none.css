@@ -1,0 +1,16 @@
+/*  Basis for your own styles  */
+.hl-pan-hb-fil0 {
+    fill: #282828;
+}
+.hl-pan-hb-fil1 {
+    fill: #c2c3c4;
+}
+.hl-pan-cl-fil0 {
+    stroke: #b3b3b3;
+}
+.hl-pan-cl-fil1 {
+    fill: #b3b3b3;
+}
+#hl-pan-menu, .hl-pan-svg-hb-icon, .hl-pan-menu-icon {
+    background-color: #03ef03;
+}

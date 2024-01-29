@@ -1,0 +1,132 @@
+html, body {
+    font-family: 'PT Sans', Arial, serif;
+}
+#hl-pan-menu {
+    background-color: #0f181b;
+    color: #E7E7E7;
+}
+
+#hl-pan-over-content {
+    background-color: #f7f7f7;
+    color: #3a3a3a;
+}
+
+#hl-pan-nav-menu {
+    background-color: #ffffff;
+}
+
+.hl-pan-menu-icon {
+    color: #5a738e;
+}
+
+.hl-pan-menu-arrow {
+    color: #5a738e;
+}
+
+#hl-pan-menu-title {
+    background-color: #2a3f54;
+    border-bottom: 2px solid #0f181b;
+}
+
+#hl-pan-background {
+    background-color: #ffffff;
+    opacity: 0.6;
+}
+
+.hl-pan-hb-fil1 {
+    fill: #5a738e;
+}
+
+.hl-pan-cl-fil0 {
+    stroke: #b3b3b3;
+}
+
+.hl-pan-cl-fil1 {
+    fill: #b3b3b3;
+}
+
+/* Menu */
+
+.hl-pan-menu-section {
+    background-color: #1b2427;
+    margin: 3px 0 3px;
+}
+
+.hl-pan-menu-section-btn {
+    background-color: #263336;
+}
+
+.hl-pan-menu-row, .hl-pan-menu-row a {
+    color: #b3b3b3;
+}
+
+.hl-pan-menu-row:hover {
+    background-color: #38484b;
+}
+
+.hl-pan-menu-list::-webkit-scrollbar-track {
+    background: #0f181b;
+}
+
+.hl-pan-menu-list::-webkit-scrollbar-thumb {
+    background: #2a4e73;
+    opacity: 0.6;
+}
+
+.hl-pan-menu-list::-webkit-scrollbar-thumb:hover {
+    background: #2f5c8a;
+}
+
+.hl-pan-menu-attachment {
+    border: 2px solid #263336;
+    border-top: 0;
+}
+
+.hl-pan-current-url {
+    background: #38484b;
+    outline: 2px solid #1b2427;
+}
+
+.hl-pan-current-url a{
+    color: #c9c8c8;
+}
+
+.hl-pan-over-selected-section .hl-pan-menu-section-btn {
+    background: #304356;
+}
+
+.hl-pan-bdc-separator, .hl-pan-bdc {
+    color: #777777;
+}
+
+.hl-pan-bdc-separator {
+    color: #cccccc;
+}
+
+.hl-pan-menu-list button {
+   color: #c9c8c8;
+    padding: 7px;
+    font-size: 14px;
+}
+
+#hl-pan-nav-menu button {
+    background-color: white;
+}
+
+#hl-pan-menu-title button {
+    background-color: #2a3f54;
+}
+
+.hl-pan-hb-fil0 {
+    fill: #282828;
+}
+
+.hl-pan-menu-open-symbol {
+    color: #777777;
+}
+
+@media only screen and (max-width: 640px) {
+    .hl-pan-menu-row {
+        border-bottom: 1px solid #263336;
+    }
+}

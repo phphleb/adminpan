@@ -1,0 +1,391 @@
+html, body, div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    font-size: 15px;
+    overscroll-behavior: none;
+    overflow: hidden;
+}
+
+#hl-pan-over {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+}
+
+
+.hl-pan-menu-list button, #hl-pan-nav-menu button, #hl-pan-menu-title button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-align: left;
+}
+
+.hl-pan-menu-list button {
+    width: 100%;
+    display: block;
+}
+
+#hl-pan-background {
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+#hl-pan-menu {
+    width: 230px;
+    flex-basis: 230px;
+    z-index: 3;
+}
+
+#hl-pan-nav-menu button {
+    margin: 13px 0 0 12px;
+}
+
+
+#hl-pan-over-content {
+    overflow: auto;
+}
+
+#hl-pan-nav-menu {
+    width: 100%;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+#hl-pan-menu-center-content {
+    width: 100%;
+    height: 47px;
+    padding: 0 0 0 15px;
+}
+
+#hl-pan-menu-right-content {
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+    height: 47px;
+    padding: 0;
+    margin-left: auto;
+}
+
+#hl-pan-menu-trans-content {
+    display: inline-flex;
+    width: 50px;
+    max-width: 50px;
+    min-width: 50px;
+    height: 47px;
+    padding: 0;
+    margin-left: auto;
+    align-items: center;
+}
+
+#hl-pan-menu-trans-content select {
+    position: relative;
+    height: 30px;
+    width: 43px;
+    top: 5px;
+    background-color: white;
+}
+
+#hl-pan-content {
+    padding: 9px 15px 5px 15px;
+    overflow: auto;
+}
+
+.hl-pan-cell-default {
+    /* No active */
+}
+
+
+.hl-pan-blocked-window {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+#hl-pan-menu-title {
+    height: 55px;
+    min-width: 230px;
+}
+
+.hl-pan-menu-list {
+    overflow: auto;
+    height: 0;
+    height: calc(100% - 59px);
+    padding: 0;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.hl-pan-menu-icon {
+    cursor: pointer;
+}
+
+.hl-pan-scroll-icon {
+    display: inline-block;
+    position: relative;
+    bottom: 7px;
+}
+
+.hl-pan-cl-fil1 {
+    stroke-width: 2.36;
+    stroke-miterlimit: 22.9256
+}
+
+.hl-pan-cl-icon {
+    display: inline-block;
+    padding: 5px;
+}
+
+.hl-pan-menu-arrow {
+    display: none;
+}
+
+.hl-pan-menu-switch {
+    padding: 13px 10px 5px 15px;
+    width: 30px;
+    height: 30px;
+}
+
+.hl-pan-sel-none {
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.hl-pan-cl-fil0 {
+    stroke-width: 2.36;
+    stroke-miterlimit: 22.9256;
+}
+
+#hl-pan-company-logo {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    height: 55px;
+    display: inline-flex;
+    justify-content: center
+}
+
+#hl-pan-company-logo img {
+    height: 55px;
+}
+
+.hl-pan-menu-section-btn {
+    padding: 8px 0 8px 7px;
+    cursor: pointer;
+}
+
+.hl-pan-menu-section {
+    margin: 3px 0 3px;
+}
+
+.hl-pan-menu-row {
+    padding: 3px 0 3px 7px;
+    cursor: pointer;
+    min-height: 20px;
+}
+
+.hl-pan-menu-row a, .hl-pan-menu-section-btn div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    position: relative;
+    top: 2px;
+}
+
+.hl-pan-menu-section-btn div {
+    top: 0;
+}
+
+.hl-pan-menu-row i, .hl-pan-menu-section-btn i {
+    width: 10px;
+}
+
+
+.hl-pan-menu-attachment {
+    display: none;
+    padding: 4px 0 0 7px;
+}
+
+.hl-pan-menu-list > .hl-pan-menu-row {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.hl-pan-bdc-separator, .hl-pan-bdc {
+    display: inline-block;
+    margin: 3px 7px 5px 0;
+    font-size: 14px;
+}
+
+/* width */
+.hl-pan-menu-list::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.hl-pan-block-visible {
+    display: block;
+}
+
+.hl-pan-route, .hl-pan-link {
+    width: 100%;
+    display: inline-block;
+}
+
+.hl-pan-menu-image {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    bottom: 1.5px;
+}
+
+.hl-pan-menu-open-symbol {
+    display: inline-block;
+    margin-left: auto;
+}
+
+.hl-pan-rotate-90 {
+    transform: rotate(90deg);
+}
+
+.hl-pan-rotate-90-return {
+    position: relative;
+    transform: rotate(-90deg);
+    right: 2px;
+}
+
+#hl-pan-over-content {
+    width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+    #hl-pan-menu {
+        display: none;
+        position: absolute;
+        width: 300px;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .hl-pan-blocked-window {
+        display: block !important;
+    }
+
+    #hl-pan-background {
+        width: 100%;
+        height: 100%;
+    }
+
+    .hl-pan-menu-arrow {
+        display: inline-block;
+    }
+
+    .hl-pan-menu-row {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    #hl-pan-company-logo {
+        width: calc(100% - 55px);
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    #hl-pan-menu {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .hl-pan-menu-arrow {
+        display: inline-block;
+    }
+
+    #hl-pan-menu-title {
+        min-width: 30px;
+        white-space: nowrap;
+        vertical-align: top;
+    }
+
+    .hl-pan-menu-row {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 15px;
+    }
+
+    #hl-pan-company-logo {
+        width: calc(100% - 55px);
+    }
+
+    #hl-pan-company-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: scale-down;
+    }
+    #hl-pan-menu-center-content {
+        display: none;
+    }
+    #hl-pan-menu-right-content {
+        width: 150px;
+        max-width: 150px;
+        min-width: 150px;
+    }
+}
+
+.hl-pan-error-link {
+    color: red;
+}
+
+.hl-pan-menu-row, .hl-pan-menu-row a, .hl-pan-link, .hl-pan-menu-section, .hl-pan-menu-section-btn {
+    height: max-content;
+    word-wrap: break-word;
+}
+

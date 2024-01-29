@@ -1,0 +1,7 @@
+{
+  "component": "phphleb/adminpan",
+  "name": "Admin Panel for the HLEB framework",
+  "description": "Adding/removing the implementation of admin panel to the project.",
+  "directory": "match-directory",
+  "settings": null
+}

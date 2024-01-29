@@ -1,101 +1,64 @@
-# Admin Panel
-### Simple and adaptive Admin Panel from Micro-Framework HLEB
+# Административная панель на основе фреймворка HLEB2
 
-The Admin Panel is not included in the original configuration of the framework [HLEB](https://github.com/phphleb/hleb), so it must be copied to the folder with the vendor/phphleb  libraries from the [github.com/phphleb/adminpan](https://github.com/phphleb/adminpan)  repository or installed using Composer:
+[![HLEB2](https://img.shields.io/badge/HLEB-2-darkcyan)](https://github.com/phphleb/hleb) ![PHP](https://img.shields.io/badge/PHP-^8.2-blue) [![License: MIT](https://img.shields.io/badge/License-MIT%20(Free)-brightgreen.svg)](https://github.com/phphleb/hleb/blob/master/LICENSE)
 
-```html
-$ composer require phphleb/adminpan
+Установка при помощи Composer:
+```bash
+composer require phphleb/adminpan
 ```
 
+Представляет собой дополнение к библиотеке регистрации HLOGIN, но также может быть использована отдельно, в качестве одной или нескольких административных панелей на одном сайте или публичного оформления для сайта.
 
-The adminPanController() method is similar to the controller() method, which is displayed in the shell of the admin panel.
+С помощью этой библиотеки создан внешний вид [сайта](https://hleb2framework.ru) документации фреймворка без значительных изменений.
+
+Настройка
+-----------------------------------
+
+Если выполнить следующую команду, то в раздел /config/structure/ будет скопирован файл adminpan.php с описанием того, как создать структуру меню для административной панели.
+```bash
+php console phphleb/adminpan add
+```
+Первоначально файл /config/structure/adminpan.php содержит пустой массив, никаких разделов меню не задано.
+Разделы меню назначаются по названиям маршрутов (или обычным ссылкам).
+Пример для демонстрационного маршрута:
 
 ```php
-
-Route::get('/admin/panel/main/')->adminPanController('AdminController@main', 'adminzone');
-
+Route::get('/{lang}/panel/page/default')
+    ->page('adminpan', ExamplePanelController::class)
+    ->name('adminpan.default');
 ```
+Здесь указано, что для меню 'adminpan' (одноименное с файлом adminpan.php) по URI адресу '/{lang}/panel/page/default' назначен контроллер page() класса ExamplePanelController для метода 'index'.
+Кроме того, маршрут имеет название 'adminpan.default', которое нужно для сопоставления с разделом в меню.
+Теперь можно создать первый пункт меню в файле /config/structure/adminpan.php.
 
 ```php
-// Demo with one level of attachment
-Route::getGroup();
-Route::get('/{lang}/admin/page/first/')->adminPanController('AdminController@page', ['Level 1' ,'Page 1'], [1]);
-Route::get('/{lang}/admin/page/second/')->adminPanController('AdminController@page', ['Level 1' ,'Page 2'], [2]);
-Route::endGroup()->where(['lang' => 'en|de|ru']);
-
+return [
+    'design' => 'base', // base|light... default `base`
+    'breadcrumbs' => 'on', // on|off default 'on'
+    'section' => [
+        [
+            'name' => [
+                'ru' => 'Главное меню',
+                'en' => 'Main menu'
+            ],
+            'section' => [
+                [
+                    'route' => 'adminpan.default',
+                    'name' => [
+                        'en' => 'Test page',
+                        'ru' => 'Тестовая страница',
+                    ],
+                ],
+            ],
+        ],
+    ]
+];
 ```
 
-```php
+Меню может содержать вложенные раскрывающиеся списки ('section'), сейчас назначен только один с одним пунктом.
 
-// Файл /app/Controllers/AdminController.php
-namespace App\Controllers;
+Если перейти по адресу URL '/ru/panel/page/default', то для страницы будет назначен дизайн 'base'(из настроек), а также меню, в котором будет список 'Главное меню' c активным пунктом 'Тестовая страница' на которой будет выведен контент из контроллера ExamplePanelController.
 
-use Phphleb\Adminpan\MainAdminPanel;
-use Phphleb\Adminpan\Add\AdminPanData;
-use Hleb\Constructor\Handlers\Request;
+Таким образом можно создать достаточно расширенное меню для сайта или админпанели, которое будет мультиязычным и интерактивным.
 
-class AdminController extends \MainController
-{
-   public function main() {
-     
-       /** Optional parameters */
-
-       $this->setGlobalPanSettings();
-
-       AdminPanData::setDataFromHeader('<meta name="description" content="Page description">');
-
-       $panel = new MainAdminPanel();
-       // HTML output
-       $content = $panel->getDataHTML("<b>HTML</b>");
-   
-       // Get a numbered list
-       $content .= $panel->getDataList(["Text 1", "Text 2", "Text 3"]);
-
-       // Output an array with data in the form of a table
-       $data = UserModel::getData();
-       $content .= $panel->getDataTable($data);
-     
-       // Content of the current page
-       return $content ;
-   }
-   
-   public function page($number) {
-       // Instructions for the page
-       AdminPanData::setInstruction("The text of the instruction.");
-
-       return "This page number is " . $number;
-   }
- 
-   protected function setGlobalPanSettings() {
-
-       /** Optional parameters */
-     
-        // Primary color setting
-        AdminPanData::setColor("#434c61");
-     
-        // Adding data to the page header
-        AdminPanData::setDataFromHeader('<meta name="author" content="admin">');
-        AdminPanData::setDataFromHeader('<script type="text/javascript" src="/js/main.js"></script>');
-     
-        // Setting the site logo
-        AdminPanData::setLogo("/svg/logo.svg");
-     
-        // Setting a link to the site and its name
-        AdminPanData::setLink("/", "main_page");
-        
-        // Setting the language, for example "en" or "ru"
-        AdminPanData::setLang(Request::get("lang") ?? 'ru');
-        
-        // Replacing the default url value
-        AdminPanData::setUrlParts(["lang" => "ru"]);
-     
-        // Defining a translation array
-        AdminPanData::setI18nList([
-            "en" => ["adminzone" => "Adminzone", "reg_panel" => "Users", "settings_panel" => "Settings", "main_page" => "Main Page"],
-            "ru" => ["adminzone" => "Админзона","reg_panel" => "Пользователи", "settings_panel" => "Параметры", "main_page" => "Главная страница"],
-          ]); 
-   }
-
-}
-
-```
+Совместно используя с библиотекой HLOGIN маршруты админпанели могут быть доступны только определенному типу пользователей (авторизованным).
